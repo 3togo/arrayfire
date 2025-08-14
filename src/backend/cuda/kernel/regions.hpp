@@ -12,6 +12,7 @@
 #include <err_cuda.hpp>
 #include <math.hpp>
 #include <memory.hpp>
+#include <functional>
 #include <thrust_utils.hpp>
 
 #include <thrust/adjacent_difference.h>
@@ -340,8 +341,15 @@ __global__ static void update_equiv(arrayfire::cuda::Param<T> equiv_map,
     }
 }
 
+//template<typename T>
+//struct clamp_to_one : public thrust::unary_function<T, T> {
+    //__host__ __device__ T operator()(const T& in) const {
+        //return (in >= (T)1) ? (T)1 : in;
+    //}
+//};
+
 template<typename T>
-struct clamp_to_one : public thrust::unary_function<T, T> {
+struct clamp_to_one {
     __host__ __device__ T operator()(const T& in) const {
         return (in >= (T)1) ? (T)1 : in;
     }

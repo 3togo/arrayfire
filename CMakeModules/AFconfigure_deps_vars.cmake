@@ -9,7 +9,7 @@ file(DOWNLOAD
   "https://github.com/arrayfire/arrayfire/blob/v3.0.0/CMakeLists.txt"
   "${ArrayFire_BINARY_DIR}/download_copy_cmakelists.stamp"
   STATUS af_check_result
-  TIMEOUT 4
+  TIMEOUT 400
 )
 list(GET af_check_result 0 af_is_connected)
 if(${af_is_connected})
